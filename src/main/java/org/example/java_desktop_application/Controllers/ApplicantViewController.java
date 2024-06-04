@@ -1,18 +1,15 @@
 package org.example.java_desktop_application.Controllers;
+
 import javafx.fxml.FXML;
-import org.example.java_desktop_application.Models.*;
-
-import javafx.collections.FXCollections;
-import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import org.example.java_desktop_application.Models.Applicant;
 
-
-import java.util.ArrayList;
+import java.util.Objects;
 
 public class ApplicantViewController extends Pane {
 
-    private Applicant model;
-    private ListView<String> skills;
+    Applicant applicant = new Applicant();
 
     @FXML
     private TextField applicantName;
@@ -23,28 +20,40 @@ public class ApplicantViewController extends Pane {
     @FXML
     private TextField applicantEmail;
 
-    @FXML
-    private Label applicantNameLabel;
+    private MainViewController mainViewController;
+
+    public void setMainViewController(MainViewController mainViewController) { this.mainViewController = mainViewController; }
 
     @FXML
     public void updateApplicant() {
 
-        String name = applicantName.getText();
-        String phone = applicantPhone.getText();
-        String email = applicantEmail.getText();
+        if (!Objects.equals(applicantName.getText(), "")) {
 
-        updateName(name);
+            applicant.setName(applicantName.getText());
+            mainViewController.updateName(applicant.getName());
+
+        }
+
+        if (!Objects.equals(applicantPhone.getText(), "")) applicant.setPhone(applicantPhone.getText());
+        if (!Objects.equals(applicantEmail.getText(), "")) applicant.setEmail(applicantEmail.getText());
+
 
     }
 
-    public void initialize() { applicantNameLabel.setText("Applicant Name"); }
-    public void updateName(String str) { applicantNameLabel.setText(str); }
     public void clearInputs() {
+
+        applicant = new Applicant();
 
         applicantName.setText("");
         applicantPhone.setText("");
         applicantEmail.setText("");
 
+        mainViewController.updateName(applicant.getName());
+
+        updateApplicant();
+
     }
+
+
 
 }

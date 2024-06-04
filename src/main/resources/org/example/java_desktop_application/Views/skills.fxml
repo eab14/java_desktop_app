@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.java_desktop_application.Controllers.SkillsViewController"
+      style="-fx-background-color: #e4e4e4; -fx-background-radius: 7px;"
+>
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Applicant Skill:" style="-fx-font-weight: bold" />
+    <TextField fx:id="applicantSkill" maxWidth="200" />
+
+    <Pane minHeight="10.0" />
+
+    <Button text="Add Skill" style="-fx-font-weight: bold" />
+
+</VBox>

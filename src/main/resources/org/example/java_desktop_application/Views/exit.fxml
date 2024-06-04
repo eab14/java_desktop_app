@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Button?>
 
 <VBox alignment="BOTTOM_RIGHT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.java_desktop_application.Controllers.ViewController">
+      fx:controller="org.example.java_desktop_application.Controllers.MainViewController">
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>

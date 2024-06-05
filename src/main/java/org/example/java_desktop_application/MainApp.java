@@ -7,14 +7,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.example.java_desktop_application.Controllers.*;
+import org.example.java_desktop_application.Models.Applicant;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        Applicant applicant = new Applicant();
 
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("Views/header.fxml"));
         VBox header = headerLoader.load();
@@ -22,16 +24,23 @@ public class MainApp extends Application {
         MainViewController mainViewController = headerLoader.getController();
 
         FXMLLoader applicantLoader = new FXMLLoader(getClass().getResource("Views/applicant.fxml"));
-        VBox applicant = applicantLoader.load();
+        VBox applicantSpacer = applicantLoader.load();
 
         FXMLLoader skillLoader = new FXMLLoader(getClass().getResource("Views/skills.fxml"));
         VBox skills = skillLoader.load();
+        SkillsViewController skillsController = skillLoader.getController();
+        skillsController.setApplicant(applicant);
 
         HBox applicantView = new HBox();
         applicantView.setSpacing(20);
-        HBox.setMargin(applicant, new Insets(0, 0, 0, 20));
-        applicantView.getChildren().addAll(applicant, skills);
+        HBox.setMargin(applicantSpacer, new Insets(0, 0, 0, 20));
+        applicantView.getChildren().addAll(applicantSpacer, skills);
         ApplicantViewController applicantController = applicantLoader.getController();
+        applicantController.setApplicant(applicant);
+
+        FXMLLoader postLoader = new FXMLLoader(getClass().getResource("Views/postings.fxml"));
+        VBox posts = postLoader.load();
+        VBox.setMargin(posts, new Insets(10, 20, 10, 20));
 
         FXMLLoader exitLoader = new FXMLLoader(getClass().getResource("Views/exit.fxml"));
         VBox exit = exitLoader.load();
@@ -40,7 +49,7 @@ public class MainApp extends Application {
 
         VBox view = new VBox();
         view.setStyle("-fx-background-color: white;");
-        view.getChildren().addAll(header, applicantView, exit);
+        view.getChildren().addAll(header, applicantView, posts, exit);
 
         Scene scene = new Scene(view, 820, 540);
 

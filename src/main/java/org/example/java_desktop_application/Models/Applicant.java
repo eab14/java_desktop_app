@@ -9,8 +9,13 @@ public class Applicant {
     private String email;
 
     private ArrayList<String> skills;
+    private ArrayList<JobPosting> appliedJobs;
 
-    public Applicant() { this.name = null; }
+    public Applicant() {
+        this.name = null;
+        this.skills = new ArrayList<>();
+        this.appliedJobs = new ArrayList<JobPosting>();
+    }
 
     public String getName() {
 
@@ -28,5 +33,6 @@ public class Applicant {
     public void setEmail(String inputEmail) { this.email = inputEmail; }
 
     public ArrayList<String> getSkills() { return skills; }
+    public void addSkill(String str) { skills.add(str); }
 
 }

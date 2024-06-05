@@ -9,7 +9,9 @@ import java.util.Objects;
 
 public class ApplicantViewController extends Pane {
 
-    Applicant applicant = new Applicant();
+    private Applicant applicant;
+
+    public void setApplicant(Applicant applicant) { this.applicant = applicant; }
 
     @FXML
     private TextField applicantName;

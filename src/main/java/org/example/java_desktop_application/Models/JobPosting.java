@@ -4,6 +4,8 @@ public class JobPosting {
 
     private Company company;
     private JobRole role;
+    private double salary;
+    private String level;
 
     public Company getCompany() { return this.company; }
     public JobRole getRole() { return this.role; }

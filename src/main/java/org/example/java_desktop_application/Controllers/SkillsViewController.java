@@ -35,13 +35,16 @@ public class SkillsViewController extends Pane {
             int numRows = skillsGrid.getRowCount();
             Label skillLabel = new Label(newSkill);
             skillLabel.setStyle("-fx-padding: 3 10 3 10;");
+
             GridPane.setMargin(skillLabel, new Insets(0, 0, 5, 0));
             GridPane.setRowIndex(skillLabel, numRows);
+
             skillsGrid.getChildren().add(skillLabel);
             applicant.addSkill(newSkill);
             applicantSkill.clear();
 
         }
+
     }
 
 }

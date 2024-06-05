@@ -3,19 +3,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox spacing="5.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.java_desktop_application.Controllers.MainViewController"
-      style="-fx-background-color: #e4e4e4; -fx-background-radius: 7px;"
->
-
-    <padding>
-        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0"/>
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.java_desktop_application.Controllers.PostViewController">
 
     <VBox fx:id="postsTable" alignment="CENTER">
 
-        <VBox alignment="CENTER">
-            <Label text="Test" />
+        <VBox spacing="5.0" alignment="CENTER" style="-fx-background-color: #232323; -fx-text-background-color: #f4f4f4; -fx-background-radius: 7px;">
+            <Label text="Job Postings" style="-fx-font-weight: bold; -fx-padding: 5 0 5 0" />
         </VBox>
 
     </VBox>

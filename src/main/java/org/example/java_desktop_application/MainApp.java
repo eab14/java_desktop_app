@@ -7,9 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.example.java_desktop_application.Controllers.*;
-import org.example.java_desktop_application.Models.Applicant;
+import org.example.java_desktop_application.Models.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainApp extends Application {
 
@@ -17,6 +18,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws IOException {
 
         Applicant applicant = new Applicant();
+        ArrayList<JobPosting> jobs = Utils.initialize();
 
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("Views/header.fxml"));
         VBox header = headerLoader.load();
@@ -41,6 +43,8 @@ public class MainApp extends Application {
         FXMLLoader postLoader = new FXMLLoader(getClass().getResource("Views/postings.fxml"));
         VBox posts = postLoader.load();
         VBox.setMargin(posts, new Insets(10, 20, 10, 20));
+        PostViewController postController = postLoader.getController();
+        postController.setJobPostings(jobs);
 
         FXMLLoader exitLoader = new FXMLLoader(getClass().getResource("Views/exit.fxml"));
         VBox exit = exitLoader.load();
@@ -59,8 +63,6 @@ public class MainApp extends Application {
 
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) { launch(); }
 
 }

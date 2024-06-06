@@ -13,10 +13,15 @@ import java.util.ArrayList;
 
 public class PostViewController {
 
+    private Applicant applicant;
+    private AppliedJobsViewController appliedJobsController;
+
     @FXML
     private VBox postContainer;
 
     ArrayList<JobPosting> jobs = new ArrayList<>();
+
+    public void setApplicant(Applicant applicant) { this.applicant = applicant; }
 
     public void setJobPostings(ArrayList<JobPosting> array) {
 
@@ -27,6 +32,8 @@ public class PostViewController {
         }
 
     }
+
+    public void setAppliedJobsController(AppliedJobsViewController appliedJobsController) { this.appliedJobsController = appliedJobsController; }
 
     private HBox createJobBox(JobPosting job) {
 
@@ -41,6 +48,11 @@ public class PostViewController {
         Button applyButton = new Button();
         applyButton.setText("Apply");
         applyButton.setStyle("-fx-font-weight: bold;");
+
+        applyButton.setOnAction(event -> {
+            applicant.addAppliedJob(job);
+            appliedJobsController.updateAppliedJobs();
+        });
 
         Button detailsButton = new Button();
         detailsButton.setText("Details");
@@ -82,6 +94,7 @@ public class PostViewController {
     }
 
     private void showJobDetailsWindow(JobPosting job) {
+
         Stage stage = new Stage();
         stage.setTitle("Job Details");
 
@@ -134,15 +147,17 @@ public class PostViewController {
         VBox container = new VBox(5);
         container.getChildren().addAll(label, contentLabel);
         container.setStyle("-fx-padding: 5; -fx-border-color: #d4d4d4; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-min-height: 48px;");
-        VBox.setMargin(container, new Insets(5, 10, 0, 10)); // top, right, bottom, left
+        VBox.setMargin(container, new Insets(5, 10, 0, 10));
 
         return container;
     }
 
     private Button createCloseButton(Stage stage) {
+
         Button closeButton = new Button("Close");
-        closeButton.setOnAction(e -> stage.close()); // Close the stage when button is clicked
+        closeButton.setOnAction(e -> stage.close());
         return closeButton;
+
     }
 
 }

@@ -33,10 +33,15 @@ public class MainApp extends Application {
         SkillsViewController skillsController = skillLoader.getController();
         skillsController.setApplicant(applicant);
 
+        FXMLLoader appliedLoader = new FXMLLoader(getClass().getResource("Views/appliedJobs.fxml"));
+        VBox appliedJobs = appliedLoader.load();
+        AppliedJobsViewController appliedJobsController = appliedLoader.getController();
+        appliedJobsController.setApplicant(applicant);
+
         HBox applicantView = new HBox();
-        applicantView.setSpacing(20);
+        applicantView.setSpacing(10);
         HBox.setMargin(applicantSpacer, new Insets(0, 0, 0, 20));
-        applicantView.getChildren().addAll(applicantSpacer, skills);
+        applicantView.getChildren().addAll(applicantSpacer, skills, appliedJobs);
         ApplicantViewController applicantController = applicantLoader.getController();
         applicantController.setApplicant(applicant);
 
@@ -45,6 +50,8 @@ public class MainApp extends Application {
         VBox.setMargin(posts, new Insets(10, 20, 10, 20));
         PostViewController postController = postLoader.getController();
         postController.setJobPostings(jobs);
+        postController.setApplicant(applicant);
+        postController.setAppliedJobsController(appliedJobsController);
 
         FXMLLoader exitLoader = new FXMLLoader(getClass().getResource("Views/exit.fxml"));
         VBox exit = exitLoader.load();
@@ -55,7 +62,7 @@ public class MainApp extends Application {
         view.setStyle("-fx-background-color: white;");
         view.getChildren().addAll(header, applicantView, posts, exit);
 
-        Scene scene = new Scene(view, 820, 620);
+        Scene scene = new Scene(view, 860, 620);
 
         stage.setResizable(false);
         stage.setMaximized(false);

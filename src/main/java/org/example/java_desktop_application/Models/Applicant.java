@@ -8,7 +8,7 @@ public class Applicant {
     private String phone;
     private String email;
 
-    private ArrayList<String> skills;
+    private ArrayList<String> skills;;
     private ArrayList<JobPosting> appliedJobs;
 
     public Applicant() {
@@ -34,5 +34,8 @@ public class Applicant {
 
     public ArrayList<String> getSkills() { return skills; }
     public void addSkill(String str) { skills.add(str); }
+
+    public ArrayList<JobPosting> getAppliedJobs() { return this.appliedJobs; }
+    public void addAppliedJob(JobPosting post) { appliedJobs.add(post); }
 
 }

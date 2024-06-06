@@ -13,14 +13,25 @@ public class Utils {
         companyList.add(new Company("Test Tech Company"));
 
         ArrayList<JobRole> rolesList = new ArrayList<>();
-        rolesList.add(new JobRole("Web Developer"));
-        rolesList.add(new JobRole("Software Developer"));
+        rolesList.add(new JobRole("Web Developer", "Assisting the web development team creating and optimizing web applications."));
+        rolesList.add(new JobRole("Software Developer", "Assisting the software development team with testing, and furthering functionality in existing programs and applications."));
 
-        jobs.add(new JobPosting(companyList.get(0), rolesList.get(0),120000, "Senior"));
-        jobs.add(new JobPosting(companyList.get(1), rolesList.get(0),65000, "Junior"));
+        ArrayList<String> webDeveloperSkills = new ArrayList<>();
+        webDeveloperSkills.add("HTML");
+        webDeveloperSkills.add("CSS");
+        webDeveloperSkills.add("JavaScript");
+        webDeveloperSkills.add("React");
 
-        jobs.add(new JobPosting(companyList.get(1), rolesList.get(1),45000, "Intern"));
-        jobs.add(new JobPosting(companyList.get(1), rolesList.get(0),45000, "Intern"));
+        ArrayList<String> softwareDeveloperSkills = new ArrayList<>();
+        softwareDeveloperSkills.add("Java");
+        softwareDeveloperSkills.add("Python");
+        softwareDeveloperSkills.add("C++");
+
+        jobs.add(new JobPosting(companyList.get(0), rolesList.get(0),120000, "Senior", webDeveloperSkills));
+        jobs.add(new JobPosting(companyList.get(1), rolesList.get(0),65000, "Junior", webDeveloperSkills));
+
+        jobs.add(new JobPosting(companyList.get(1), rolesList.get(1),45000, "Intern", softwareDeveloperSkills));
+        jobs.add(new JobPosting(companyList.get(1), rolesList.get(0),45000, "Intern", webDeveloperSkills));
 
         return jobs;
 

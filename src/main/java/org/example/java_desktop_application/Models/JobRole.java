@@ -6,5 +6,4 @@ public class JobRole {
     public String getTitle() { return this.title; }
 
     public JobRole(String t) { this.title = t; }
-
 }

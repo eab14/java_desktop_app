@@ -21,4 +21,6 @@ public class JobPosting {
 
     }
 
+    public Float getSalary() { return this.salary; }
+    public String getLevel() { return this.level; }
 }

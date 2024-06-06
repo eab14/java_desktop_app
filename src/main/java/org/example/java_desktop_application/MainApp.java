@@ -55,7 +55,10 @@ public class MainApp extends Application {
         view.setStyle("-fx-background-color: white;");
         view.getChildren().addAll(header, applicantView, posts, exit);
 
-        Scene scene = new Scene(view, 820, 540);
+        Scene scene = new Scene(view, 820, 620);
+
+        stage.setResizable(false);
+        stage.setMaximized(false);
 
         stage.setTitle("APD 545 - Job Application Program");
         stage.setScene(scene);

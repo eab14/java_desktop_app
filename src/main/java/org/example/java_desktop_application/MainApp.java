@@ -1,3 +1,16 @@
+/********************************************************************************
+ * APD545 – Workshop #2
+ * I declare that this assignment is my own work in accordance with Seneca Academic Policy.
+ * No part of this assignment has been copied manually or electronically from any other source
+ * (including web sites) or distributed to other students.
+ *
+ * Name:         Evan Boileau
+ * Student ID:   048655096
+ * Date:         6/6/2024
+ *
+ *
+ ********************************************************************************/
+
 package org.example.java_desktop_application;
 
 import javafx.application.Application;

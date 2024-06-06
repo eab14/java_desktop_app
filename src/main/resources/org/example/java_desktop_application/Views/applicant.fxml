@@ -14,13 +14,13 @@
     </padding>
 
     <Label text="Applicant Name:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantName" maxWidth="200" />
+    <TextField fx:id="applicantName" maxWidth="200" promptText="Enter Name" />
 
     <Label text="Applicant Phone:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantPhone" maxWidth="200" />
+    <TextField fx:id="applicantPhone" maxWidth="200" promptText="Enter Phone #" />
 
     <Label text="Applicant E-mail:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantEmail" maxWidth="200" />
+    <TextField fx:id="applicantEmail" maxWidth="200" promptText="Enter E-mail" />
 
     <Pane minHeight="10.0" />
 

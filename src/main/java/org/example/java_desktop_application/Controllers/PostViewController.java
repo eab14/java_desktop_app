@@ -125,7 +125,7 @@ public class PostViewController {
                 createLabelWithContent("Role:", job.getRole().getTitle()),
                 createLabelWithContent("Salary:", String.format("$%.2f", job.getSalary())),
                 createLabelWithContent("Level:", job.getLevel()),
-                createLabelWithContent("Skills:", String.join(", ", job.getRequiredSkills())),
+                createLabelWithContent("Required Skills:", String.join(", ", job.getRequiredSkills())),
                 createLabelWithContent("Description:", job.getRole().getDescription())
         );
 

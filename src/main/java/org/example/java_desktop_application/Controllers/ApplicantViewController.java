@@ -11,11 +11,18 @@ import java.util.Objects;
 public class ApplicantViewController extends Pane {
 
     private Applicant applicant;
+
+    private MainViewController mainViewController;
     private PostViewController postController;
     private SkillsViewController skillsController;
     private AppliedJobsViewController appliedJobsController;
 
     public void setApplicant(Applicant applicant) { this.applicant = applicant; }
+
+    public void setMainViewController(MainViewController mainViewController) { this.mainViewController = mainViewController; }
+    public void setPostViewController(PostViewController postController) { this.postController = postController; }
+    public void setSkillsViewController(SkillsViewController skillsController) { this.skillsController = skillsController; }
+    public void setAppliedJobsViewController(AppliedJobsViewController appliedJobsController) { this.appliedJobsController = appliedJobsController; }
 
     @FXML
     private TextField applicantName;
@@ -25,10 +32,6 @@ public class ApplicantViewController extends Pane {
 
     @FXML
     private TextField applicantEmail;
-
-    private MainViewController mainViewController;
-
-    public void setMainViewController(MainViewController mainViewController) { this.mainViewController = mainViewController; }
 
     @FXML
     public void updateApplicant() {
@@ -42,10 +45,6 @@ public class ApplicantViewController extends Pane {
 
         if (!Objects.equals(applicantPhone.getText(), "")) applicant.setPhone(applicantPhone.getText());
         if (!Objects.equals(applicantEmail.getText(), "")) applicant.setEmail(applicantEmail.getText());
-
-        applicantName.clear();
-        applicantEmail.clear();
-        applicantPhone.clear();
 
     }
 
@@ -72,7 +71,4 @@ public class ApplicantViewController extends Pane {
 
     }
 
-    public void setPostViewController(PostViewController postController) { this.postController = postController; }
-    public void setSkillsViewController(SkillsViewController skillsController) { this.skillsController = skillsController; }
-    public void setAppliedJobsViewController(AppliedJobsViewController appliedJobsController) { this.appliedJobsController = appliedJobsController; }
 }

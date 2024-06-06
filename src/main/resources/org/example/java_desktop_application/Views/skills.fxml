@@ -15,7 +15,7 @@
     </padding>
 
     <Label text="Applicant Skill:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantSkill" maxWidth="200" />
+    <TextField fx:id="applicantSkill" maxWidth="200" promptText="Enter Applicant Skills" />
 
     <Pane minHeight="5.0" />
 

@@ -13,7 +13,7 @@
     </padding>
 
     <VBox alignment="TOP_RIGHT">
-        <Label text="Applicant Name" fx:id="applicantNameLabel" style="-fx-font-weight: bold" />
+        <Label text="Enter Applicant Information..." fx:id="applicantNameLabel" style="-fx-font-weight: bold" />
     </VBox>
 
 </VBox>

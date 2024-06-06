@@ -16,13 +16,15 @@ public class Applicant {
 
     public Applicant() {
         this.name = null;
+        this.phone = null;
+        this.email= null;
         this.skills = new ArrayList<>();
         this.appliedJobs = new ArrayList<JobPosting>();
     }
 
     public String getName() {
 
-        if (this.name == null) return "Applicant Name";
+        if (this.name == null || this.name.isEmpty()) return "Enter Applicant Information...";
         else return name;
 
     }
@@ -55,7 +57,10 @@ public class Applicant {
 
     public boolean verifyAppilcant() {
 
-        return !Objects.equals(this.getName(), "") && !Objects.equals(this.getPhone(), "") && !Objects.equals(this.getEmail(), "") && !this.getSkills().isEmpty();
+        return !Objects.equals(this.getName(), "") &&
+                !Objects.equals(this.getPhone(), "") &&
+                !Objects.equals(this.getEmail(), "") &&
+                !this.getSkills().isEmpty();
 
     }
 

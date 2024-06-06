@@ -17,7 +17,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Applicant applicant = new Applicant();
+        Applicant applicant = Applicant.getInstance();
         ArrayList<JobPosting> jobs = Utils.initialize();
 
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("Views/header.fxml"));
@@ -57,6 +57,9 @@ public class MainApp extends Application {
         VBox exit = exitLoader.load();
 
         applicantController.setMainViewController(mainViewController);
+        applicantController.setPostViewController(postController);
+        applicantController.setSkillsViewController(skillsController);
+        applicantController.setAppliedJobsViewController(appliedJobsController);
 
         VBox view = new VBox();
         view.setStyle("-fx-background-color: white;");

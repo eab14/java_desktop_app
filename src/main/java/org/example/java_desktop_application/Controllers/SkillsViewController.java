@@ -14,10 +14,12 @@ public class SkillsViewController {
     private ListView<String> skillsListView;
 
     public void setApplicant(Applicant applicant) {
+
         this.applicant = applicant;
         ObservableList<String> skillsObservableList = FXCollections.observableArrayList(applicant.getSkills());
         skillsListView.setItems(skillsObservableList);
         skillsListView.setCellFactory(skillListView -> new LabelCell());
+
     }
 
     @FXML
@@ -25,19 +27,26 @@ public class SkillsViewController {
 
     @FXML
     private void addSkill() {
+
         String newSkill = applicantSkill.getText();
+
         if (!newSkill.isEmpty()) {
+
             applicant.addSkill(newSkill);
+            System.out.println(applicant.getName());
             ObservableList<String> updatedSkillsList = FXCollections.observableArrayList(applicant.getSkills());
             skillsListView.setItems(updatedSkillsList);
             applicantSkill.clear();
+
         }
+
     }
 
     private static class LabelCell extends ListCell<String> {
 
         @Override
         protected void updateItem(String skill, boolean empty) {
+
             super.updateItem(skill, empty);
 
             if (empty || skill == null) {
@@ -46,6 +55,15 @@ public class SkillsViewController {
                 setText(skill);
                 setStyle("-fx-font-weight: bold");
             }
+
         }
     }
+
+    public void clearSkills() {
+
+        applicant.clearSkills();
+        skillsListView.getItems().clear();
+
+    }
+
 }

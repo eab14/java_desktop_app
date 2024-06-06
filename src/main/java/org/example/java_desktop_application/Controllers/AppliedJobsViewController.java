@@ -22,6 +22,7 @@ public class AppliedJobsViewController {
         appliedJobsListView.getItems().setAll(applicant.getAppliedJobs());
         appliedJobsListView.setCellFactory(jobListView -> new LabelCell());
     }
+
     public void updateAppliedJobs() { displayAppliedJobs(); }
 
     private static class LabelCell extends ListCell<JobPosting> {
@@ -41,4 +42,12 @@ public class AppliedJobsViewController {
         }
 
     }
+
+    public void clearJobPostings() {
+
+        applicant.clearAppliedJobs();
+        appliedJobsListView.getItems().clear();
+
+    }
+
 }

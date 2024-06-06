@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<VBox maxWidth="240" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+<VBox maxWidth="240" maxHeight="240"  spacing="5.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.java_desktop_application.Controllers.SkillsViewController"
       style="-fx-background-color: #e4e4e4; -fx-background-radius: 7px;"
 >

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox minWidth="200" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+<VBox minWidth="200" maxHeight="240" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.java_desktop_application.Controllers.ApplicantViewController"
       style="-fx-background-color: #e4e4e4; -fx-background-radius: 7px;"
 >

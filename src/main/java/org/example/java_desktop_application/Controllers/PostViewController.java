@@ -50,8 +50,26 @@ public class PostViewController {
         applyButton.setStyle("-fx-font-weight: bold;");
 
         applyButton.setOnAction(event -> {
-            applicant.addAppliedJob(job);
-            appliedJobsController.updateAppliedJobs();
+
+            if (applicant.verifyAppilcant()) {
+
+                applicant.addAppliedJob(job);
+                jobs.remove(job);
+                appliedJobsController.updateAppliedJobs();
+                updateJobPostings();
+
+            }
+
+            else {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error: Applicant verification failed!");
+                alert.showAndWait();
+
+            }
+
         });
 
         Button detailsButton = new Button();
@@ -157,6 +175,24 @@ public class PostViewController {
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> stage.close());
         return closeButton;
+
+    }
+
+    private void updateJobPostings() {
+
+        postContainer.getChildren().clear();
+
+        for (JobPosting job : jobs) {
+            HBox jobBox = createJobBox(job);
+            postContainer.getChildren().add(jobBox);
+        }
+
+    }
+
+    public void clearJobPostings() {
+
+        jobs = new ArrayList<>();
+        postContainer.getChildren().clear();
 
     }
 

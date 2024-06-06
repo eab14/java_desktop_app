@@ -1,8 +1,11 @@
 package org.example.java_desktop_application.Models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Applicant {
+
+    private static Applicant instance;
 
     private String name;
     private String phone;
@@ -23,6 +26,16 @@ public class Applicant {
         else return name;
 
     }
+    public static Applicant getInstance() {
+
+        if (instance == null) {
+            instance = new Applicant();
+        }
+
+        return instance;
+
+    }
+
 
     public void setName(String inputName) { this.name = inputName; }
 
@@ -34,8 +47,16 @@ public class Applicant {
 
     public ArrayList<String> getSkills() { return skills; }
     public void addSkill(String str) { skills.add(str); }
+    public void clearSkills() { this.skills = new ArrayList<>(); }
 
     public ArrayList<JobPosting> getAppliedJobs() { return this.appliedJobs; }
     public void addAppliedJob(JobPosting post) { appliedJobs.add(post); }
+    public void clearAppliedJobs() { this.appliedJobs = new ArrayList<>(); }
+
+    public boolean verifyAppilcant() {
+
+        return !Objects.equals(this.getName(), "") && !Objects.equals(this.getPhone(), "") && !Objects.equals(this.getEmail(), "") && !this.getSkills().isEmpty();
+
+    }
 
 }

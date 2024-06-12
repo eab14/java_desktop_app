@@ -117,7 +117,6 @@ public class SkillsViewController {
                 Button deleteButton = new Button("Delete");
                 deleteButton.setStyle("-fx-font-weight: bold");
                 deleteButton.setOnAction(event -> {
-                    // Remove the skill from the applicant and update the list view
                     applicant.removeSkill(skill);
                     ObservableList<String> updatedSkillsList = FXCollections.observableArrayList(applicant.getSkills());
                     skillsListView.setItems(updatedSkillsList);

@@ -24,7 +24,7 @@
 
     <Pane minHeight="10.0" />
 
-    <HBox spacing="10.0" alignment="CENTER">
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
         <Button text="Submit" onAction="#updateApplicant" style="-fx-font-weight: bold" />
         <Button text="Clear" onAction="#clearInputs" style="-fx-font-weight: bold" />
     </HBox>

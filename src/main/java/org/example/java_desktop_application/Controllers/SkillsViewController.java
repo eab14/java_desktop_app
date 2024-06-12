@@ -4,11 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
-import javafx.util.Pair;
-import javafx.geometry.Pos;
 import org.example.java_desktop_application.Models.Applicant;
 
 import java.util.Optional;
@@ -21,7 +20,6 @@ public class SkillsViewController {
     private ListView<String> skillsListView;
 
     public void setApplicant(Applicant applicant) {
-
         this.applicant = applicant;
         ObservableList<String> skillsObservableList = FXCollections.observableArrayList(applicant.getSkills());
         skillsListView.setItems(skillsObservableList);
@@ -31,84 +29,80 @@ public class SkillsViewController {
                 editSelectedSkill();
             }
         });
-
     }
 
     private void editSelectedSkill() {
         String selectedSkill = skillsListView.getSelectionModel().getSelectedItem();
         if (selectedSkill != null) {
-            TextInputDialog dialog = new TextInputDialog(selectedSkill);
-            dialog.setTitle("Edit Skill");
-            dialog.setHeaderText(null);
-            dialog.setContentText("Enter new skill:");
-
-            Optional<String> result = dialog.showAndWait();
-
-            result.ifPresent(newSkill -> {
-                if (!newSkill.isEmpty() && !newSkill.equals(selectedSkill)) {
-                    applicant.removeSkill(selectedSkill);
-                    applicant.addSkill(newSkill);
-                    ObservableList<String> updatedSkillsList = FXCollections.observableArrayList(applicant.getSkills());
-                    skillsListView.setItems(updatedSkillsList);
-                }
-            });
+            showSkillDialog(selectedSkill);
         }
     }
 
-
-    @FXML
-    private TextField applicantSkill;
-
     @FXML
     private void addSkill() {
-        Dialog<Pair<String, Boolean>> dialog = new Dialog<>();
-        dialog.setTitle("Add Skill");
+        showSkillDialog(null);
+    }
+
+    private void showSkillDialog(String initialValue) {
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle(initialValue == null ? "Add Skill" : "Edit Skill");
         dialog.setHeaderText(null);
         dialog.initModality(Modality.APPLICATION_MODAL);
 
-        ButtonType submitButtonType = new ButtonType("Submit");
-        ButtonType cancelButtonType = new ButtonType("Cancel");
-
+        ButtonType submitButtonType = new ButtonType("Submit", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, cancelButtonType);
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
-
-        TextField skillField = new TextField();
+        TextField skillField = new TextField(initialValue);
         skillField.setPromptText("Enter skill...");
+        skillField.setPrefWidth(200);
 
         Label skillLabel = new Label("Skill:");
         skillLabel.setStyle("-fx-font-weight: bold");
 
-        grid.add(skillLabel, 0, 0);
-        grid.add(skillField, 1, 0);
+        HBox inputBox = new HBox(10);
+        inputBox.getChildren().addAll(skillLabel, skillField);
+        inputBox.setAlignment(Pos.CENTER_LEFT);
 
-        dialog.getDialogPane().setContent(grid);
+        VBox content = new VBox(10);
+        content.getChildren().addAll(inputBox);
+        content.setPadding(new Insets(20));
+        content.setAlignment(Pos.CENTER);
+
+        dialog.getDialogPane().setContent(content);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                return skillField.getText();
+            }
+            return null;
+        });
 
         Button submitButton = (Button) dialog.getDialogPane().lookupButton(submitButtonType);
         submitButton.setStyle("-fx-font-weight: bold");
-        submitButton.setOnAction(event -> {
-            String skill = skillField.getText();
+        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
+        cancelButton.setStyle("-fx-font-weight: bold");
+
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(skill -> {
             if (!skill.isEmpty()) {
-                applicant.addSkill(skill);
+                if (initialValue == null) {
+                    applicant.addSkill(skill);
+                } else {
+                    applicant.removeSkill(initialValue);
+                    applicant.addSkill(skill);
+                }
                 ObservableList<String> updatedSkillsList = FXCollections.observableArrayList(applicant.getSkills());
                 skillsListView.setItems(updatedSkillsList);
             }
-            dialog.setResult(new Pair<>(skill, true));
         });
 
-        Button cancelButton = (Button) dialog.getDialogPane().lookupButton(cancelButtonType);
-        cancelButton.setStyle("-fx-font-weight: bold");
-        cancelButton.setOnAction(event -> dialog.setResult(new Pair<>(null, false)));
-
-        dialog.showAndWait();
     }
 
 
-    private class LabelCell extends ListCell<String> {
 
+    private class LabelCell extends ListCell<String> {
         @Override
         protected void updateItem(String skill, boolean empty) {
             super.updateItem(skill, empty);
@@ -122,7 +116,6 @@ public class SkillsViewController {
 
                 Button deleteButton = new Button("Delete");
                 deleteButton.setStyle("-fx-font-weight: bold");
-
                 deleteButton.setOnAction(event -> {
                     // Remove the skill from the applicant and update the list view
                     applicant.removeSkill(skill);
@@ -140,14 +133,10 @@ public class SkillsViewController {
                 setGraphic(stackPane);
             }
         }
-
     }
 
     public void clearSkills() {
-
         applicant.clearSkills();
         skillsListView.getItems().clear();
-
     }
-
 }

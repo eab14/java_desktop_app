@@ -20,6 +20,8 @@
 
     <Pane minHeight="5.0" />
 
-    <Button text="Add Skill" style="-fx-font-weight: bold" onAction="#addSkill" />
+    <HBox alignment="BOTTOM_RIGHT">
+        <Button text="Add Skill" style="-fx-font-weight: bold" onAction="#addSkill" />
+    </HBox>
 
 </VBox>

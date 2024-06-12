@@ -130,6 +130,7 @@ public class PostViewController {
         );
 
         Button closeButton = createCloseButton(stage);
+        closeButton.setStyle("-fx-font-weight: bold");
 
         HBox closeButtonContainer = new HBox();
         closeButtonContainer.getChildren().add(closeButton);

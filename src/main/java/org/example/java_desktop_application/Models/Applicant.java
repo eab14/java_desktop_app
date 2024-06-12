@@ -48,8 +48,21 @@ public class Applicant {
     public void setEmail(String inputEmail) { this.email = inputEmail; }
 
     public ArrayList<String> getSkills() { return skills; }
-    public void addSkill(String str) { skills.add(str); }
+    public void addSkill(String newSkill) {
+        boolean skillExists = false;
+        for (int i = 0; i < skills.size(); i++) {
+            if (Objects.equals(skills.get(i), newSkill)) {
+                skills.set(i, newSkill);
+                skillExists = true;
+                break;
+            }
+        }
+        if (!skillExists) {
+            skills.add(newSkill);
+        }
+    }
     public void clearSkills() { this.skills = new ArrayList<>(); }
+    public void removeSkill(String skill) { skills.remove(skill); }
 
     public ArrayList<JobPosting> getAppliedJobs() { return this.appliedJobs; }
     public void addAppliedJob(JobPosting post) { appliedJobs.add(post); }

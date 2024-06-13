@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox minWidth="200" maxHeight="240" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+<VBox maxHeight="240" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.java_desktop_application.Controllers.ApplicantViewController"
       style="-fx-background-color: #e4e4e4; -fx-background-radius: 7px;"
 >
@@ -14,13 +14,13 @@
     </padding>
 
     <Label text="Applicant Name:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantName" maxWidth="200" promptText="Enter Name" />
+    <TextField fx:id="applicantName" promptText="Enter Name" />
 
     <Label text="Applicant Phone:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantPhone" maxWidth="200" promptText="Enter Phone #" />
+    <TextField fx:id="applicantPhone" promptText="Enter Phone #" />
 
     <Label text="Applicant E-mail:" style="-fx-font-weight: bold" />
-    <TextField fx:id="applicantEmail" maxWidth="200" promptText="Enter E-mail" />
+    <TextField fx:id="applicantEmail" promptText="Enter E-mail" />
 
     <Pane minHeight="10.0" />
 

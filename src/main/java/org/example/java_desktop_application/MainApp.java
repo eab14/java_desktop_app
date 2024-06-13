@@ -1,12 +1,12 @@
 /********************************************************************************
- * APD545 – Workshop #2
+ * APD545 – Workshop #3
  * I declare that this assignment is my own work in accordance with Seneca Academic Policy.
  * No part of this assignment has been copied manually or electronically from any other source
  * (including web sites) or distributed to other students.
  *
  * Name:         Evan Boileau
  * Student ID:   048655096
- * Date:         6/6/2024
+ * Date:         12/6/2024
  *
  *
  ********************************************************************************/
@@ -54,6 +54,7 @@ public class MainApp extends Application {
         HBox applicantView = new HBox();
         applicantView.setSpacing(10);
         HBox.setMargin(applicantSpacer, new Insets(0, 0, 0, 20));
+        HBox.setMargin(appliedJobs, new Insets(0, 20, 0, 0));
         applicantView.getChildren().addAll(applicantSpacer, skills, appliedJobs);
         ApplicantViewController applicantController = applicantLoader.getController();
         applicantController.setApplicant(applicant);
@@ -80,8 +81,22 @@ public class MainApp extends Application {
 
         Scene scene = new Scene(view, 860, 620);
 
-        stage.setResizable(false);
-        stage.setMaximized(false);
+        double parentWidth = scene.getWidth();
+        double viewWidth = parentWidth / 3;
+
+        applicantSpacer.setPrefWidth(viewWidth);
+        skills.setPrefWidth(viewWidth);
+        appliedJobs.setPrefWidth(viewWidth);
+
+        scene.widthProperty().addListener((_, _, newValue) -> {
+            double newWidth = (newValue.doubleValue()) / 3;
+            applicantSpacer.setPrefWidth(newWidth);
+            skills.setPrefWidth(newWidth);
+            appliedJobs.setPrefWidth(newWidth);
+        });
+
+        stage.setMinWidth(860);
+        stage.setMinHeight(660);
 
         stage.setTitle("APD 545 - Job Application Program");
         stage.setScene(scene);

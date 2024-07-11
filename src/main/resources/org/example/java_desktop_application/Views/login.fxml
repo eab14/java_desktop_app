@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.java_desktop_application.Controllers.MainViewController"
+      style="-fx-background-color: #232323; -fx-text-background-color: #f4f4f4; -fx-background-radius: 7px;"
+>
+
+    <padding>
+        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0"/>
+    </padding>
+
+</VBox>

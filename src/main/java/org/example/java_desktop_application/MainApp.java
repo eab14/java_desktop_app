@@ -1,16 +1,3 @@
-/********************************************************************************
- * APD545 – Workshop #3
- * I declare that this assignment is my own work in accordance with Seneca Academic Policy.
- * No part of this assignment has been copied manually or electronically from any other source
- * (including web sites) or distributed to other students.
- *
- * Name:         Evan Boileau
- * Student ID:   048655096
- * Date:         12/6/2024
- *
- *
- ********************************************************************************/
-
 package org.example.java_desktop_application;
 
 import javafx.application.Application;
@@ -27,9 +14,15 @@ import java.util.ArrayList;
 
 public class MainApp extends Application {
 
-    @Override
-    public void start(Stage stage) throws IOException {
+    private Stage primaryStage;
 
+    @Override
+    public void start(Stage primaryStage) {
+        LoginApp loginApp = new LoginApp();
+        loginApp.start(primaryStage, "login");
+    }
+
+    public void start(Stage primaryStage, String username) throws IOException{
         Applicant applicant = Applicant.getInstance();
         ArrayList<JobPosting> jobs = Utils.initialize();
 
@@ -79,31 +72,31 @@ public class MainApp extends Application {
         view.setStyle("-fx-background-color: white;");
         view.getChildren().addAll(header, applicantView, posts, exit);
 
-        Scene scene = new Scene(view, 860, 620);
+        Scene AppScene = new Scene(view, 860, 620);
 
-        double parentWidth = scene.getWidth();
+        double parentWidth = AppScene.getWidth();
         double viewWidth = parentWidth / 3;
 
         applicantSpacer.setPrefWidth(viewWidth);
         skills.setPrefWidth(viewWidth);
         appliedJobs.setPrefWidth(viewWidth);
 
-        scene.widthProperty().addListener((_, _, newValue) -> {
+        AppScene.widthProperty().addListener((_, _, newValue) -> {
             double newWidth = (newValue.doubleValue()) / 3;
             applicantSpacer.setPrefWidth(newWidth);
             skills.setPrefWidth(newWidth);
             appliedJobs.setPrefWidth(newWidth);
         });
 
-        stage.setMinWidth(860);
-        stage.setMinHeight(660);
+        primaryStage.setMinWidth(860);
+        primaryStage.setMinHeight(660);
 
-        stage.setTitle("APD 545 - Job Application Program");
-        stage.setScene(scene);
-        stage.show();
-
+        primaryStage.setTitle("APD 545 - Job Application Program");
+        primaryStage.setScene(AppScene);
+        primaryStage.show();
     }
 
-    public static void main(String[] args) { launch(); }
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
